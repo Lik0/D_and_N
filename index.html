@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Квест-карта</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+e2atRuDo6jBVMZp2vYc9M0xzUqH2yZi9EpMZ9a8M="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <div class="city-switch" id="city-switch"></div>
+    <button class="reset-btn" id="reset-btn" title="Сбросить прогресс">Сброс прогресса</button>
+  </div>
+  <div id="map" aria-label="Карта квеста"></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__content" role="dialog" aria-modal="true">
+      <button class="modal__close" id="modal-close" aria-label="Закрыть">×</button>
+      <h2 class="modal__title" id="modal-title"></h2>
+      <div class="modal__question" id="modal-question"></div>
+      <div class="modal__options" id="modal-options"></div>
+      <div class="modal__story" id="modal-story"></div>
+      <div class="modal__actions" id="modal-actions"></div>
+    </div>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1j7kPpK1IYq3aYp0SMZPR4OkC8LHpIt5JTZ1Ppzw="
+    crossorigin=""
+  ></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
