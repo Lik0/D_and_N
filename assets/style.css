@@ -1,0 +1,231 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0f172a;
+  color: #0f172a;
+}
+
+#map {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+}
+
+.top-bar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+}
+
+.city-switch button {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.city-switch button.active {
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+}
+
+.reset-btn {
+  border: 1px solid #ef4444;
+  background: #fff1f2;
+  color: #b91c1c;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.15);
+}
+
+.reset-btn:hover {
+  background: #ffe4e6;
+  transform: translateY(-1px);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+}
+
+.leaflet-container {
+  background: #0f172a;
+}
+
+.marker-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  border: 3px solid #e2e8f0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.marker-btn.solved {
+  background: linear-gradient(135deg, #10b981, #14b8a6);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 16px;
+  z-index: 1100;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal__content {
+  background: #fff;
+  color: #0f172a;
+  width: min(640px, 100%);
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal__title {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.modal__question {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.modal__options {
+  display: grid;
+  gap: 8px;
+}
+
+.modal__options button {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.modal__options button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.2);
+}
+
+.modal__story {
+  margin-top: 14px;
+  padding: 12px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.modal__actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal__close,
+.modal__actions button {
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 20px;
+  padding: 4px 8px;
+}
+
+.modal__close:hover,
+.modal__actions button:hover {
+  opacity: 0.85;
+}
+
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1200;
+}
+
+.toast.visible {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .city-switch button,
+  .reset-btn {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .modal__content {
+    padding: 16px 16px 12px;
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Квест-карта</title>
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Ctext x='32' y='40' font-size='28' text-anchor='middle' fill='white'%3E%F0%9F%97%BA%3C/text%3E%3C/svg%3E"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <div class="city-switch" id="city-switch"></div>
+    <button class="reset-btn" id="reset-btn" title="Сбросить прогресс">Сброс прогресса</button>
+  </div>
+  <div id="map" aria-label="Карта квеста"></div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__content" role="dialog" aria-modal="true">
+      <button class="modal__close" id="modal-close" aria-label="Закрыть">×</button>
+      <h2 class="modal__title" id="modal-title"></h2>
+      <div class="modal__question" id="modal-question"></div>
+      <div class="modal__options" id="modal-options"></div>
+      <div class="modal__story" id="modal-story"></div>
+      <div class="modal__actions" id="modal-actions"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="assets/app.js"></script>
+</body>
+</html>
